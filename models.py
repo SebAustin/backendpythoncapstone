@@ -6,9 +6,17 @@ from datetime import date
 
 database_path = os.environ.get('DATABASE_URL', 'postgresql://shenry@localhost:5432/casting')
 
-# Handle Render/Heroku postgres:// URL format
+# Handle various database URL formats
+# Render/Heroku sometimes use postgres:// which needs to be postgresql://
 if database_path.startswith("postgres://"):
     database_path = database_path.replace("postgres://", "postgresql://", 1)
+# If DATABASE_URL is set to an HTTPS URL by mistake, raise a helpful error
+elif database_path.startswith("https://") or database_path.startswith("http://"):
+    raise ValueError(
+        "DATABASE_URL appears to be an HTTP/HTTPS URL. "
+        "Please use the 'Internal Database URL' from Render, which should start with 'postgresql://'. "
+        "You can find this in your Render PostgreSQL service under 'Info' -> 'Connections' -> 'Internal Database URL'"
+    )
 
 db = SQLAlchemy()
 
