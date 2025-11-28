@@ -1,0 +1,186 @@
+{
+  "info": {
+    "name": "Casting Agency API",
+    "description": "API endpoints for the Casting Agency application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/",
+          "host": ["{{host}}"],
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Actors",
+      "item": [
+        {
+          "name": "Get All Actors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/actors",
+              "host": ["{{host}}"],
+              "path": ["actors"]
+            }
+          }
+        },
+        {
+          "name": "Create Actor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tom Hanks\",\n  \"age\": 65,\n  \"gender\": \"Male\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/actors",
+              "host": ["{{host}}"],
+              "path": ["actors"]
+            }
+          }
+        },
+        {
+          "name": "Update Actor",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tom Hanks Updated\",\n  \"age\": 66\n}"
+            },
+            "url": {
+              "raw": "{{host}}/actors/1",
+              "host": ["{{host}}"],
+              "path": ["actors", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Actor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/actors/1",
+              "host": ["{{host}}"],
+              "path": ["actors", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "Get All Movies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/movies",
+              "host": ["{{host}}"],
+              "path": ["movies"]
+            }
+          }
+        },
+        {
+          "name": "Create Movie",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Forrest Gump\",\n  \"release_date\": \"1994-07-06\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/movies",
+              "host": ["{{host}}"],
+              "path": ["movies"]
+            }
+          }
+        },
+        {
+          "name": "Update Movie",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Forrest Gump Updated\",\n  \"release_date\": \"1994-07-07\"\n}"
+            },
+            "url": {
+              "raw": "{{host}}/movies/1",
+              "host": ["{{host}}"],
+              "path": ["movies", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Movie",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/movies/1",
+              "host": ["{{host}}"],
+              "path": ["movies", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ]
+}
+
